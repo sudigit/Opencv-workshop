@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('basics/input.png')
+img = cv2.imread('assets/input.png')
 
 # 1. Custom Kernels
 sharpen = np.array([[0, -1, 0], [-1, 10, -1], [0, -1, 0]])

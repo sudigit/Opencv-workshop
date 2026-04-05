@@ -1,6 +1,6 @@
 import cv2
 
-img = cv2.imread('basics/input.png')
+img = cv2.imread('assets/input.png')
 print(img.shape)
 img = cv2.resize(img, (500, 500))
 print(img.shape)

@@ -1,31 +1,42 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('basics/input.png', 0)
-_, mask = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
+img = cv2.imread('assets/erosion_dilation_input.png', 0)
+_, threshed = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
 
-kernel = np.array([[1,1,1], [1,1,1], [1,1,1]])
+kernel = np.ones((3,3), np.uint8)
 
-eroded = cv2.erode(mask, kernel, iterations=1)
-dilated = cv2.dilate(mask, kernel, iterations=1)
+eroded = cv2.erode(threshed, kernel, iterations=5)
+dilated = cv2.dilate(threshed, kernel, iterations=5)
+grad = cv2.morphologyEx(threshed, cv2.MORPH_GRADIENT, kernel) 
+cv2.imshow('Original', img)
+cv2.imshow('Original_clearer', threshed)
 cv2.imshow('Erode', eroded)
 cv2.imshow('Dilate', dilated)
+cv2.imshow('Gradient', grad)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)   
-closing = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)  
+to_open = cv2.imread('assets/opening_input.png')
+to_open = cv2.cvtColor(to_open, cv2.COLOR_BGR2GRAY)
+to_close = cv2.imread('assets/closing_input.png')
+to_close = cv2.cvtColor(to_close, cv2.COLOR_BGR2GRAY)
+opening = cv2.morphologyEx(to_open, cv2.MORPH_OPEN, kernel)   
+closing = cv2.morphologyEx(to_close, cv2.MORPH_CLOSE, kernel)  
 
+cv2.imshow('Open_input', to_open)
 cv2.imshow('Opening', opening)
+cv2.imshow('Close_input', to_close)
 cv2.imshow('Closing', closing)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-grad = cv2.morphologyEx(mask, cv2.MORPH_GRADIENT, kernel) 
-tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)   
-blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)   
+img = cv2.imread('assets/hat_input.png')
+gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+kernel = np.ones((10,10), np.uint8)
+tophat = cv2.morphologyEx(gray_img, cv2.MORPH_TOPHAT, kernel)   
+blackhat = cv2.morphologyEx(gray_img, cv2.MORPH_BLACKHAT, kernel)   
 
-cv2.imshow('Gradient', grad)
 cv2.imshow('Tophat', tophat)
 cv2.imshow('Blackhat', blackhat)
 cv2.waitKey(0)

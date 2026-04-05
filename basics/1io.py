@@ -1,10 +1,10 @@
 import cv2
 
 # --- IMAGE IO ---
-img = cv2.imread('basics/input.png')
+img = cv2.imread('assets/input.png')
 if img is not None:
     cv2.imshow('Static Image (Press any key)', img)
-    cv2.imwrite('copy_of_input.png', img)
+    cv2.imwrite('assets/copy_of_input.png', img)
     cv2.waitKey(0)
 
 # --- VIDEO & WEBCAM IO ---

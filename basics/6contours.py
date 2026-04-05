@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('basics/contour_input.png') # Use an image with clear shapes
+img = cv2.imread('assets/contour_input.png') # Use an image with clear shapes
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # 1. Edges
@@ -14,7 +14,7 @@ contours, hierarchy = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SI
 
 for cnt in contours:
     area = cv2.contourArea(cnt)
-    if area > 500: # Ignore tiny noise
+    if area > 50: # Ignore tiny noise
         # Perimeter
         peri = cv2.arcLength(cnt, True)
         # Shape Approx
