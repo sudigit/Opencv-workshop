@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('input.png', 0)
+img = cv2.imread('basics/input.png', 0)
 _, mask = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
 
 kernel = np.array([[1,1,1], [1,1,1], [1,1,1]])

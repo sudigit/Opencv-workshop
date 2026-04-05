@@ -2,7 +2,7 @@ import cv2
 import numpy as np
     
 
-img = cv2.imread('input.png')
+img = cv2.imread('basics/input.png')
 img = cv2.resize(img, (500, 600))
 
 # openCV uses BGR, not RGB

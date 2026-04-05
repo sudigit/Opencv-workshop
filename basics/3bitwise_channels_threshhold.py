@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('input.png')
+img = cv2.imread('basics/input.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # BITWISE OPERATIONS
